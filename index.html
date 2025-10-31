@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prima Sultana Prity - Senior Instructor & Frontend Developer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for professional icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for the Black Theme with Purple/Cyan accents */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* Define color palette */
+        :root {
+            --color-bg-primary: #121217; /* Deep Charcoal */
+            --color-bg-secondary: #1a1a21; /* Slightly Lighter Dark */
+            --color-text-primary: #e0e0e0; /* Off-White Text */
+            --color-accent-purple: #8b5cf6; /* Vibrant Purple */
+            --color-accent-cyan: #06b6d4; /* Cyan/Teal */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+        }
+        
+        .hero-section {
+            background-color: var(--color-bg-primary);
+        }
+
+        /* Gradient for professional tags */
+        .tag-gradient {
+            background-image: linear-gradient(90deg, var(--color-accent-purple), var(--color-accent-cyan));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Accent button style */
+        .btn-accent-purple {
+            background-color: var(--color-accent-purple);
+            color: white;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn-accent-purple:hover {
+            background-color: #7c3aed; /* Darker purple on hover */
+            transform: translateY(-1px);
+        }
+        
+        /* Outline button style */
+        .btn-outline-cyan {
+            border: 2px solid var(--color-accent-cyan);
+            color: var(--color-accent-cyan);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-outline-cyan:hover {
+            background-color: var(--color-accent-cyan);
+            color: var(--color-bg-primary);
+        }
+
+        /* Section heading line accent */
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-accent-cyan); 
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        
+        /* Card styling */
+        .dark-card {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .dark-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Timeline Dot with dual color */
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-accent-purple);
+            border: 2px solid var(--color-accent-cyan);
+        }
+        
+        /* Gallery specific styling */
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: opacity 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-opacity-95 backdrop-blur-sm bg-[var(--color-bg-primary)] shadow-2xl shadow-black/30">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold text-[var(--color-accent-purple)]">Prima S. Prity</a>
+            <div class="hidden md:flex space-x-6 text-[var(--color-text-primary)] font-medium">
+                <a href="#about" class="hover:text-[var(--color-accent-cyan)] transition duration-150">About</a>
+                <a href="#skills" class="hover:text-[var(--color-accent-cyan)] transition duration-150">Expertise</a>
+                <a href="#experience" class="hover:text-[var(--color-accent-cyan)] transition duration-150">Experience</a>
+                <a href="#projects" class="hover:text-[var(--color-accent-cyan)] transition duration-150">Projects</a>
+                <a href="#gallery" class="hover:text-[var(--color-accent-cyan)] transition duration-150">Vision Gallery</a>
+                <a href="#contact" class="hover:text-[var(--color-accent-cyan)] transition duration-150">Contact</a>
+            </div>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="menu-button" class="md:hidden p-2 rounded-md hover:bg-[var(--color-bg-secondary)]">
+                <svg id="menu-icon-open" class="w-6 h-6 text-[var(--color-text-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg id="menu-icon-close" class="w-6 h-6 hidden text-[var(--color-text-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/24/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[var(--color-bg-primary)] shadow-lg border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">Expertise</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">Projects</a>
+                <a href="#gallery" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">Vision Gallery</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-accent-cyan)]">Contact</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-3/5 text-center md:text-left">
+                <!-- Professional Tags -->
+                <div class="flex flex-wrap justify-center md:justify-start mb-6">
+                    <span class="tag-gradient">Python Expert</span>
+                    <span class="tag-gradient">Frontend Developer</span>
+                    <span class="tag-gradient">ML Enthusiast</span>
+                    <span class="tag-gradient">Tech Educator</span>
+                </div>
+
+                <p class="text-lg font-medium text-[var(--color-accent-cyan)] mb-2">Hello, I'm</p>
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-[var(--color-accent-purple)]">Prima Sultana Prity</h1>
+                <h2 class="text-2xl md:text-3xl font-light text-gray-400 mb-6">Senior Instructor & Frontend Developer</h2>
+                
+                <p class="text-gray-400 max-w-lg mb-8 mx-auto md:mx-0">
+                    Crafting immersive user experiences and empowering the next generation of digital professionals through hands-on mentorship and cutting-edge technology training at **EDGE-CSE-CUET**.
+                </p>
+
+                <!-- Advanced Feature Blocks -->
+                <div class="flex justify-center md:justify-start space-x-4 mb-10">
+                    <div class="px-6 py-3 dark-card rounded-xl text-center shadow-lg">
+                        <div data-lucide="layout-grid" class="w-6 h-6 mx-auto text-[var(--color-accent-cyan)] mb-1"></div>
+                        <p class="text-sm font-semibold">Frontend Design</p>
+                    </div>
+                    <div class="px-6 py-3 dark-card rounded-xl text-center shadow-lg">
+                        <div data-lucide="brain" class="w-6 h-6 mx-auto text-[var(--color-accent-cyan)] mb-1"></div>
+                        <p class="text-sm font-semibold">ML & Vision Projects</p>
+                    </div>
+                    <div class="px-6 py-3 dark-card rounded-xl text-center shadow-lg">
+                        <div data-lucide="graduation-cap" class="w-6 h-6 mx-auto text-[var(--color-accent-cyan)] mb-1"></div>
+                        <p class="text-sm font-semibold">Tech Mentorship</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action & Social Links -->
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                    <!-- Buttons Group -->
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="btn-accent-purple font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300">Explore My Work</a>
+                        <a href="#contact" class="btn-outline-cyan font-semibold py-3 px-8 rounded-full transition duration-300">Start a Conversation</a>
+                    </div>
+                    
+                    <!-- Social Links Group -->
+                    <div class="flex space-x-3 mt-4 sm:mt-0">
+                        <!-- LinkedIn Link -->
+                        <a href="https://www.linkedin.com/in/prima-sultana-prity-70780b32a/" target="_blank" title="LinkedIn Profile" class="text-gray-400 hover:text-[var(--color-accent-purple)] transition duration-300 p-2 rounded-full hover:bg-[var(--color-bg-secondary)]">
+                            <div data-lucide="linkedin" class="w-6 h-6"></div>
+                        </a>
+                        <!-- GitHub Link -->
+                        <a href="https://github.com/Prity-CSE" target="_blank" title="GitHub Profile" class="text-gray-400 hover:text-[var(--color-accent-purple)] transition duration-300 p-2 rounded-full hover:bg-[var(--color-bg-secondary)]">
+                            <div data-lucide="github" class="w-6 h-6"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Image (with dark theme styling) -->
+            <div class="md:w-2/5 mt-12 md:mt-0 flex justify-center">
+                <div class="w-64 h-64 bg-[var(--color-bg-secondary)] rounded-full flex items-center justify-center border-4 border-[var(--color-accent-purple)] overflow-hidden shadow-2xl shadow-[var(--color-accent-purple)]/30">
+                    <!-- CHANGED: Replaced placeholder with the user's uploaded image -->
+                    <img src="C:\Users\PRITY\Downloads\WhatsApp_Image_2025-10-31_at_9.52.24_PM-removebg-preview.png" 
+                         onerror="this.onerror=null;this.src='uploaded:Screenshot 2025-10-31 194505.jpg-383043ac-da8c-4d8c-8874-6ee0093fc5a1';" 
+                         alt="Prima Sultana Prity Profile" 
+                         class="w-full h-full object-cover opacity-80">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-[var(--color-bg-primary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">About Me</h3>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        I hold a BSc in CSE with a **strong academic background**, providing me with a robust foundation in **Python**, **Frontend Development (React, Node.js)**, and **Machine Learning**. This knowledge is the backbone of my instructional role and technical projects.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        My primary focus is on my role as a **Senior Instructor at EDGE-CSE-CUET Digital Skill Training**, where I specialize in practical programming, web technologies, and Digital Marketing. I simplify complex tech topics and ensure students are job-ready, blending theory with high-impact project execution.
+                    </p>
+                    <div class="flex items-center space-x-4 text-[var(--color-accent-cyan)] font-medium">
+                        <div data-lucide="mail" class="w-5 h-5 mr-1"></div>
+                        <span>Email: Pritychy012@gmail.com</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-[var(--color-accent-cyan)] font-medium mt-2">
+                        <div data-lucide="phone" class="w-5 h-5 mr-1"></div>
+                        <span>Phone: 01860938014</span>
+                    </div>
+                </div>
+                <div class="p-6 dark-card rounded-lg shadow-xl">
+                    <h4 class="text-xl font-semibold text-[var(--color-accent-purple)] mb-4 flex items-center">
+                        <span data-lucide="target" class="w-5 h-5 mr-2"></span>
+                        Professional Objective
+                    </h4>
+                    <p class="text-gray-400 italic">
+                        "To integrate my extensive technical knowledge and proven instructional skills to add tangible value to a forward-thinking organization, while constantly seeking challenging roles that foster continuous growth in the technology sector."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+
+    <!-- Skills & Expertise Section -->
+    <section id="skills" class="py-16 md:py-24 bg-[var(--color-bg-secondary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">Core Expertise</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill Category 1: Frontend & Development -->
+                <div class="dark-card rounded-xl p-5 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div data-lucide="layout-dashboard" class="w-7 h-7 text-[var(--color-accent-purple)]"></div>
+                        <h4 class="text-lg font-semibold text-[var(--color-text-primary)]">Frontend Development</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Creating responsive and dynamic user interfaces.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-800 text-purple-300 text-xs font-medium px-3 py-1 rounded-full">React</span>
+                        <span class="bg-gray-800 text-purple-300 text-xs font-medium px-3 py-1 rounded-full">JavaScript</span>
+                        <span class="bg-gray-800 text-purple-300 text-xs font-medium px-3 py-1 rounded-full">HTML/CSS</span>
+                        <span class="bg-gray-800 text-purple-300 text-xs font-medium px-3 py-1 rounded-full">Custom Templates</span>
+                    </div>
+                </div>
+                
+                <!-- Skill Category 2: Machine Learning & Vision -->
+                <div class="dark-card rounded-xl p-5 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div data-lucide="cpu" class="w-7 h-7 text-[var(--color-accent-purple)]"></div>
+                        <h4 class="text-lg font-semibold text-[var(--color-text-primary)]">AI/ML & Vision</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Building predictive models and analyzing visual data.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-gray-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full">Numpy/Pandas</span>
+                        <span class="bg-gray-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full">Computer Vision</span>
+                        <span class="bg-gray-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full">Data Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 3: Instruction & Digital Strategy -->
+                <div class="dark-card rounded-xl p-5 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div data-lucide="award" class="w-7 h-7 text-[var(--color-accent-purple)]"></div>
+                        <h4 class="text-lg font-semibold text-[var(--color-text-primary)]">Instruction & SMM</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Mentorship, training, and managing online digital presence.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-800 text-yellow-300 text-xs font-medium px-3 py-1 rounded-full">Digital Marketing</span>
+                        <span class="bg-gray-800 text-yellow-300 text-xs font-medium px-3 py-1 rounded-full">Curriculum Design</span>
+                        <span class="bg-gray-800 text-yellow-300 text-xs font-medium px-3 py-1 rounded-full">Mentoring</span>
+                        <span class="bg-gray-800 text-yellow-300 text-xs font-medium px-3 py-1 rounded-full">Software Testing</span>
+                    </div>
+                </div>
+                
+                <!-- Skill Category 4: Languages & Tools -->
+                <div class="dark-card rounded-xl p-5 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div data-lucide="globe" class="w-7 h-7 text-[var(--color-accent-purple)]"></div>
+                        <h4 class="text-lg font-semibold text-[var(--color-text-primary)]">Languages & Tools</h4>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Effective communication and essential development environments.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-800 text-green-300 text-xs font-medium px-3 py-1 rounded-full">Bengali (Native)</span>
+                        <span class="bg-gray-800 text-green-300 text-xs font-medium px-3 py-1 rounded-full">English (Fluent)</span>
+                        <span class="bg-gray-800 text-green-300 text-xs font-medium px-3 py-1 rounded-full">Git/GitHub</span>
+                        <span class="bg-gray-800 text-green-300 text-xs font-medium px-3 py-1 rounded-full">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+
+    <!-- Experience Section (Professional Timeline) -->
+    <section id="experience" class="py-16 md:py-24 bg-[var(--color-bg-primary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">Professional Experience</h3>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-800 hidden md:block"></div>
+
+                <!-- Item 1: Senior Instructor (Work) - RIGHT -->
+                <div class="mb-10 flex justify-between items-center w-full right-timeline">
+                    <div class="w-full md:w-5/12">
+                        <div class="dark-card p-6 rounded-xl shadow-xl transition duration-300 hover:border-[var(--color-accent-purple)]">
+                            <span class="text-sm font-semibold text-[var(--color-accent-cyan)]">July 2024 - Present</span>
+                            <h4 class="text-xl font-bold text-[var(--color-accent-purple)] mt-1">Senior Instructor (Tech & Digital)</h4>
+                            <p class="text-gray-400">EDGE-CSE-CUET Digital Skills Training</p>
+                            <ul class="list-disc pl-5 mt-3 text-gray-400 text-sm">
+                                <li>Lead instruction for **Python Programming** and **Digital Marketing**, impacting job-readiness.</li>
+                                <li>Designed and delivered hands-on curricula, blending theoretical knowledge with high-impact project execution.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-3 h-3 timeline-dot rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                    <div class="w-full md:w-5/12"></div>
+                </div>
+                
+                <!-- Item 2: Software Developer (Freelancing) - LEFT -->
+                <div class="mb-10 flex justify-between items-center w-full left-timeline">
+                    <div class="w-full md:w-5/12"></div>
+                    <div class="hidden md:block w-3 h-3 timeline-dot rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                    <div class="w-full md:w-5/12">
+                        <div class="dark-card p-6 rounded-xl shadow-xl transition duration-300 hover:border-[var(--color-accent-purple)]">
+                            <span class="text-sm font-semibold text-[var(--color-accent-cyan)]">Since 2024 - Present</span>
+                            <h4 class="text-xl font-bold text-[var(--color-accent-purple)] mt-1">Software Developer (Freelance)</h4>
+                            <p class="text-gray-400">Independent Consultant</p>
+                            <ul class="list-disc pl-5 mt-3 text-gray-400 text-sm">
+                                <li>Developing and deploying bespoke web and software solutions for diverse clients, leveraging expertise in **React, Python, and Node.js**.</li>
+                                <li>Focused on **full-stack development**, delivering scalable architecture and responsive user interfaces that meet high performance standards.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Social Media Manager (Work) - RIGHT -->
+                <div class="mb-10 flex justify-between items-center w-full right-timeline">
+                    <div class="w-full md:w-5/12">
+                        <div class="dark-card p-6 rounded-xl shadow-xl transition duration-300 hover:border-[var(--color-accent-purple)]">
+                            <span class="text-sm font-semibold text-[var(--color-accent-cyan)]">January 2025 - Present</span>
+                            <h4 class="text-xl font-bold text-[var(--color-accent-purple)] mt-1">Social Media Manager</h4>
+                            <p class="text-gray-400">Remote/Client-Based Role</p>
+                            <ul class="list-disc pl-5 mt-3 text-gray-400 text-sm">
+                                <li>Spearheading digital strategy and brand growth across multiple platforms, driving significant audience engagement.</li>
+                                <li>Responsible for data-driven content creation, campaign execution, and performance **analytics** to achieve key marketing objectives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-3 h-3 timeline-dot rounded-full absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+                    <div class="w-full md:w-5/12"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-24 bg-[var(--color-bg-secondary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">Featured Projects</h3>
+            <p class="text-gray-400 mb-10 max-w-3xl">These projects reflect my ability to apply advanced Machine Learning, Computer Vision, and Frontend skills to solve complex real-world problems.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: CKD Prediction using ML -->
+                <div class="dark-card rounded-xl p-6 shadow-xl hover:shadow-[0_0_20px_0_rgba(139,92,246,0.5)]">
+                    <div data-lucide="activity" class="w-8 h-8 text-red-400 mb-4"></div>
+                    <h4 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">CKD Prediction using Machine Learning</h4>
+                    <p class="text-gray-400 text-sm mb-4">
+                        A predictive model utilizing data science techniques (Numpy/Pandas) to assess the risk of Chronic Kidney Disease (CKD), demonstrating ML proficiency.
+                    </p>
+                    <a href="https://github.com/Prity-CSE" target="_blank" class="text-[var(--color-accent-cyan)] hover:text-[var(--color-accent-purple)] font-medium text-sm flex items-center">
+                        View Codebase
+                        <div data-lucide="arrow-right" class="w-4 h-4 ml-1"></div>
+                    </a>
+                </div>
+
+                <!-- Project 2: Vehicle Detection and Counting -->
+                <div class="dark-card rounded-xl p-6 shadow-xl hover:shadow-[0_0_20px_0_rgba(6,182,212,0.5)]">
+                    <div data-lucide="bus" class="w-8 h-8 text-yellow-400 mb-4"></div>
+                    <h4 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">Vehicle Detection and Counting</h4>
+                    <p class="text-gray-400 text-sm mb-4">
+                        A Computer Vision project for real-time traffic monitoring and counting, showcasing image processing and object tracking skills.
+                    </p>
+                    <a href="https://github.com/Prity-CSE" target="_blank" class="text-[var(--color-accent-cyan)] hover:text-[var(--color-accent-purple)] font-medium text-sm flex items-center">
+                        View Codebase
+                        <div data-lucide="arrow-right" class="w-4 h-4 ml-1"></div>
+                    </a>
+                </div>
+
+                <!-- Project 3: Hotel Management System (Web Dev) -->
+                <div class="dark-card rounded-xl p-6 shadow-xl hover:shadow-[0_0_20px_0_rgba(139,92,246,0.5)]">
+                    <div data-lucide="home" class="w-8 h-8 text-green-400 mb-4"></div>
+                    <h4 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">Hotel Management System</h4>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Full-stack web application built with robust database management (SQL) and a dynamic frontend, focused on booking and administration.
+                    </p>
+                    <a href="https://github.com/Prity-CSE" target="_blank" class="text-[var(--color-accent-cyan)] hover:text-[var(--color-accent-purple)] font-medium text-sm flex items-center">
+                        View Codebase
+                        <div data-lucide="arrow-right" class="w-4 h-4 ml-1"></div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+    
+    <!-- Gallery Section (Image with Paragraph - EXPANDED) -->
+    <section id="gallery" class="py-16 md:py-24 bg-[var(--color-bg-primary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">Vision Gallery: Blending Instruction & Tech</h3>
+            
+            <div class="space-y-12">
+                
+                <!-- Gallery Item 1: Instructor Role Focus (Layout 1) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-purple)] mb-3">Program Launch & Orientation DayT</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            This photo captures the exciting launch and orientation day at EDGE-CSE-CUET. Students were introduced to the program’s structure, upcoming projects, and hands-on learning opportunities, setting the stage for a productive and inspiring journey ahead.
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="G:\Digital Marketing\Image\IMG-20241002-WA0028.jpg"
+                             alt="Placeholder for an instructor photo with students" 
+                             class="gallery-image shadow-2xl shadow-[var(--color-accent-purple)]/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/8b5cf6/121217?text=Training+Session+Photo';">
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2: AI/ML Project Focus (Layout 2) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-1">
+                        <img src="G:\Digital Marketing\Image\IMG-20240926-WA0051.jpg"
+                             alt="Placeholder for a data science visualization" 
+                             class="gallery-image shadow-2xl shadow-[var(--color-accent-cyan)]/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/06b6d4/121217?text=Data+Science+Concept';">
+                    </div>
+                    <div class="order-2">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-cyan)] mb-3">Web Development Workshop</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                           Here, I was mentoring students on how to build dynamic and responsive websites using HTML, CSS, JavaScript, and backend technologies. The session focused on practical learning — from idea to deployment — to inspire students to become confident web developers ready for the tech industry.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3: Frontend Design & UX (Layout 1) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-purple)] mb-3">Exploring the Power of Digital Marketing</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            In this class, I shared insights about digital marketing tools, social media strategies, and analytics. The goal was to help students understand how technology and marketing combine to build online presence effectively. The session ended with a hands-on campaign design activity led by the participants.
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="G:\Digital Marketing\Image\IMG-20241026-WA0025.jpg" 
+                             alt="Placeholder for a clean UI design" 
+                             class="gallery-image shadow-2xl shadow-indigo-500/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/a78bfa?text=Responsive+UI+Mockup';">
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4: Digital Marketing & SMM Strategy (Layout 2) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-1">
+                        <img src="G:\Digital Marketing\Image\IMG-20241001-WA0035.jpg"
+                             alt="Placeholder for a social media analytics dashboard" 
+                             class="gallery-image shadow-2xl shadow-cyan-500/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/0e7490/ecfdf5?text=Digital+Marketing+Analytics';">
+                    </div>
+                    <div class="order-2">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-cyan)] mb-3">Hands-on Python Programming Session</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Teaching Python has always been one of my favorite parts of mentoring students. In this session, I guided learners through real-world projects, helping them understand how coding logic works in practical applications. The excitement on their faces when their code finally runs successfully makes every effort worthwhile.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5: Data Analysis & Insight (Layout 1) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-purple)] mb-3">Empowering Madrasa Students with Computer Fundamentals</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            This photo captures a special training session designed for madrasa students, introducing them to the basics of computer use and digital tools. The session focused on building their confidence with technology and helping them gain essential computer literacy skills for modern education and future opportunities.
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="G:\AS-Suffah Academy\Picture\1000011248.jpg" 
+                             alt="Placeholder for a data visualization chart" 
+                             class="gallery-image shadow-2xl shadow-fuchsia-500/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/6b21a8/f0e4ff?text=Data+Wrangling+Chart';">
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6: Python & Core Programming (Layout 2) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 rounded-xl dark-card shadow-xl">
+                    <div class="order-1">
+                        <img src="D:\Image\WhatsApp Image 2025-10-31 at 11.12.14 PM.jpeg" 
+                             alt="Placeholder for a clean Python code snippet" 
+                             class="gallery-image shadow-2xl shadow-teal-500/20"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/0e7490/ccfbf1?text=Python+Code+Snippet';">
+                    </div>
+                    <div class="order-2">
+                        <h3 class="text-2xl font-bold text-[var(--color-accent-cyan)] mb-3">EDGE-CSE-CUET Certificate Ceremony</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                           A proud moment for both students and instructors — this ceremony celebrated the successful completion of training programs at EDGE-CSE-CUET. It was truly rewarding to witness students being recognized for their hard work, dedication, and growth across various technical and professional skills.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Horizontal Rule -->
+    <div class="w-full max-w-7xl mx-auto border-t border-gray-800"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-[var(--color-bg-secondary)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="section-heading text-3xl font-bold text-[var(--color-text-primary)] mb-12">Get In Touch</h3>
+            
+            <div class="max-w-xl mx-auto dark-card p-8 rounded-xl shadow-2xl">
+                <p class="text-gray-400 mb-6 text-center">
+                    I am currently open to new challenging opportunities. Send me a message, and I'll respond as quickly as possible!
+                </p>
+                <!-- Static Form -->
+                <form id="contact-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 bg-[var(--color-bg-primary)] border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-[var(--color-accent-cyan)] focus:border-[var(--color-accent-cyan)] text-gray-200 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 bg-[var(--color-bg-primary)] border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-[var(--color-accent-cyan)] focus:border-[var(--color-accent-cyan)] text-gray-200 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 bg-[var(--color-bg-primary)] border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-[var(--color-accent-cyan)] focus:border-[var(--color-accent-cyan)] text-gray-200 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn-accent-purple w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-sm font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent-purple)] focus:ring-offset-[var(--color-bg-secondary)]">
+                            Send Secure Message
+                        </button>
+                    </div>
+                    <div id="form-message" class="mt-4 text-center font-semibold text-sm"></div>
+                </form>
+
+                <!-- Social Links (Also present here in the Contact Section) -->
+                <div class="flex justify-center space-x-6 mt-8">
+                    <a href="https://github.com/Prity-CSE" target="_blank" class="text-gray-400 hover:text-[var(--color-accent-cyan)] transition duration-150">
+                        <div data-lucide="github" class="w-7 h-7"></div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/prima-sultana-prity-70780b32a/" target="_blank" class="text-gray-400 hover:text-[var(--color-accent-cyan)] transition duration-150">
+                        <div data-lucide="linkedin" class="w-7 h-7"></div>
+                    </a>
+                    <a href="mailto:Pritychy012@gmail.com" class="text-gray-400 hover:text-[var(--color-accent-cyan)] transition duration-150">
+                        <div data-lucide="mail" class="w-7 h-7"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--color-bg-primary)] py-8 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Prima Sultana Prity. Designed with Dark Mode, Powered by Code.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Form Submission Simulation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Mobile Menu Toggle Logic
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+
+            menuButton.addEventListener('click', () => {
+                const isMenuOpen = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden', !isMenuOpen);
+                menuIconOpen.classList.toggle('hidden', isMenuOpen);
+                menuIconClose.classList.toggle('hidden', !isMenuOpen);
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                });
+            });
+
+            // Contact Form Submission Simulation (No real backend)
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-cyan');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                formMessage.textContent = 'Sending...';
+                formMessage.classList.remove('text-red-400', 'text-green-400');
+                formMessage.style.color = accentColor; 
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    formMessage.textContent = 'Message sent! I appreciate you reaching out.';
+                    formMessage.style.color = 'rgb(74, 222, 128)'; // green-400 for success
+                    contactForm.reset();
+                }, 2000);
+            });
+        });
+    </script>
+
+</body>
+</html>
